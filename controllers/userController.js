@@ -43,19 +43,30 @@ deleteUser(req, res) {
     )
     .then((userData) => res.json(userData))
     .catch((err) => res.status(500).json(err))
-}
-
+},
 
 // POST - add a friend to a user's collection by the friend's _id
-
-
+addFriend(req, res) {
+    User.findOneAndUpdate(
+        { _id: req.params.userId},
+        { $addToSet: { friends: req.params.friendId }},
+        {runValidators: true, new: true}
+    )
+    .then((friend) => res.json(friend))
+    .catch((err) => res.status(500).json(err))
+},
 
 
 // DELETE - remove a friend from user by it's _id
-
-
-
-
+removeFriend(req, res) {
+    return User.findOneAndUpdate(
+        { _id: req.params.userId},
+        { $pull: { friends: req.params.friendId }},
+        { runValidators: true, new: true}
+    )
+    .then((user) => res.json(user))
+    .catch((err) => res.status(500).json(err))
+}
 
 
 }
