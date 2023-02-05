@@ -46,8 +46,12 @@ deleteUser(req, res) {
 }
 
 
+// POST - add a friend to a user's collection by the friend's _id
 
 
+
+
+// DELETE - remove a friend from user by it's _id
 
 
 
