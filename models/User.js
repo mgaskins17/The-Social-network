@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 const thoughtSchema = require('./Thought');
 
 // Schema to create new User model
-const userSchema = new Schema({
+const userSchema =  new Schema({
     username: {
         type: String,
         required: true,
@@ -18,10 +18,10 @@ const userSchema = new Schema({
             },
         }
     },
-    thoughts: [thoughtSchema],
+    // thoughts: [thoughtSchema],
     friends: [{
         type: Schema.Types.ObjectId,
-        ref: userSchema,
+        ref: 'user',
     }]
 },
 {
@@ -37,5 +37,20 @@ userSchema.virtual('friendCount').get(function() {
 });
 
 const User = model('user', userSchema);
+
+
+// Creating new instances of Users
+User.create(
+    {username: 'user1', email: 'user1@mail.com'},
+    {username: 'user2', email: 'user2@mail.com'},
+    {username: 'user3', email: 'user3@mail.com'},
+    {username: 'user4', email: 'user4@mail.com'},
+    (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        console.log(data)
+    }
+);
 
 module.exports = User;

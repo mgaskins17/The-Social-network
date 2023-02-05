@@ -70,7 +70,7 @@ Use the following guidelines to set up your models and API routes:
   * String
   * Unique
   * Required
-  * Trimmed
+  * Trimmed - aggregation
 
 * `email`
   * String
