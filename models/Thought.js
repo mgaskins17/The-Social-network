@@ -62,11 +62,11 @@ thoughtSchema.virtual('reactionCount').get(function() {
 
 const Thought = model('thought', thoughtSchema);
 
-// Thought.create(
-//     {thoughtText: 'Commodo occaecat minim qui laborum.', username: 'user1'},
-//     {thoughtText: 'Consectetur ex ex aliquip mollit anim qui culpa aliqua sunt eiusmod.', username: 'user1'},
-//     {thoughtText: 'Minim sunt do dolor mollit ex eiusmod pariatur cupidatat duis esse et deserunt eu.', username: 'user1'}
-// )
+Thought.create(
+    {thoughtText: 'Commodo occaecat minim qui laborum.', username: 'user1'},
+    {thoughtText: 'Consectetur ex ex aliquip mollit anim qui culpa aliqua sunt eiusmod.', username: 'user1'},
+    {thoughtText: 'Minim sunt do dolor mollit ex eiusmod pariatur cupidatat duis esse et deserunt eu.', username: 'user1'}
+)
 
 
 module.exports = Thought;

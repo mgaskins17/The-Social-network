@@ -44,16 +44,16 @@ const User = model('user', userSchema);
 
 
 // Creating new instances of Users
-// User.create(
-//     {username: 'user1', email: 'user1@mail.com'},
-//     {username: 'user2', email: 'user2@mail.com'},
-//     {username: 'user3', email: 'user3@mail.com'},
-//     {username: 'user4', email: 'user4@mail.com'},
-//     (err, data) => {
-//         if (err) {
-//             console.log(err);
-//         }
-//     }
-// );
+User.create(
+    {username: 'user1', email: 'user1@mail.com'},
+    {username: 'user2', email: 'user2@mail.com'},
+    {username: 'user3', email: 'user3@mail.com'},
+    {username: 'user4', email: 'user4@mail.com'},
+    (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+    }
+);
 
 module.exports = User;

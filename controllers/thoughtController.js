@@ -1,6 +1,7 @@
 const { User, Thought } = require('../models');
 
 module.exports = {
+
 // GETs all thought
 getThoughts(req, res) {
     Thought.find()
@@ -32,8 +33,6 @@ createThought(req, res) {
     .catch((err) => res.status(500).json(err));
 },
 
-
-
 // PUT update thought by it's _id
 updateThought(req, res) {
     Thought.findOneAndUpdate(
@@ -52,8 +51,6 @@ updateThought(req, res) {
     .catch((err) => res.status(500).json(err));
 },
 
-
-
 // DELETE a thought by it's _id
 deleteThought(req, res) {
     Thought.findOneAndRemove(
@@ -69,13 +66,28 @@ deleteThought(req, res) {
     .then((user) =>
     !user ? res.status(404).json({message: 'Post deleted, but no user to attached' }) : res.json('Delted the post.'))
     .catch((err) => res.status(500).json(err))
+},
+
+// POST a reaction to a thought
+createReaction(req, res) {
+    Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $addToSet: { reactions: req.body } },
+        { new: true }
+    )
+    .then((thought) => res.json(thought))
+    .catch((err) => res.status(500).json(err))
+},
+
+// DELETE a reaction and remove from the respective thought
+deleteReaction(req, res) {
+    return Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $pull: { reactions: { _id: req.params.reactionId} } }, // use _id as this is what is sent back as a response - the reactionId is just the name for the schema
+        { runValidators: true, new: true }
+    )
+    .then((thought) => res.json(thought))
+    .catch((err) => res.status(500).json(err))
 }
-
-
-
-
-
-
-
 
 }
